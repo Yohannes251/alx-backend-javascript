@@ -19,6 +19,8 @@ async function countStudents(path) {
     iteration = 1;
   }
 
+  returnValue = ''
+  returnValue += `Number of students: ${fields.length}\n`
   console.log(`Number of students: ${fields.length}`);
 
   const checked = [];
@@ -32,9 +34,11 @@ async function countStudents(path) {
         }
       }
       checked.push(field);
+      returnValue += `Number of students in ${field}: ${nameList.length}. List: ${nameList.join(', ')}\n`
       console.log(`Number of students in ${field}: ${nameList.length}. List: ${nameList.join(', ')}`);
     }
   }
+  return returnValue.slice(0, -1)
 }
 
 module.exports = countStudents;

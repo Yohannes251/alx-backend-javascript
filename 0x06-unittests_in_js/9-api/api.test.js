@@ -18,7 +18,7 @@ describe('Index page integration test', () => {
     });
   });
 
-  describe('GET /cart/123', () => {
+  describe('GET /cart/:id', () => {
     it('Returns status code of 200 and id of 123', (done) => {
       const options = {
         url: 'http://localhost:7865/cart/123',
@@ -31,9 +31,7 @@ describe('Index page integration test', () => {
         done();
       });
     });
-  });
 
-  describe('GET /cart/abc', () => {
     it('returns a 404 status code', (done) => {
       const options = {
         url: 'http://localhost:7865/cart/abc',

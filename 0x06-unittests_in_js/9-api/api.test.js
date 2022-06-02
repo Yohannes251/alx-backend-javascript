@@ -27,14 +27,14 @@ describe('Index page integration test', () => {
 
       request(options, function (err, res, body) {
         expect(res.statusCode).to.equal(200);
-        expect(body).to.equal('Payment methods for cart 12');
+        expect(body).to.equal('Payment methods for cart 123');
         done();
       });
     });
   });
 
   describe('GET /cart/abc', () => {
-    it('Returns a 404 status code', (done) => {
+    it('returns a 404 status code', (done) => {
       const options = {
         url: 'http://localhost:7865/cart/abc',
         method: 'GET',

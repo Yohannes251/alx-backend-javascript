@@ -3,7 +3,7 @@ const readDatabase = require('../utils');
 class StudentsController {
   static getAllStudents(req, res) {
     res.statusCode = 200;
-    readDatabase('./database.csv').then((data) => {
+    readDatabase(process.argv[2]).then((data) => {
       let writeData = 'This is the list of our students\n';
       for (const datum of Object.keys(data)) {
         writeData += (`Number of students in ${datum}: ${data[datum].length}. List: ${data[datum].join(', ')}\n`);
@@ -23,7 +23,7 @@ class StudentsController {
       return;
     }
 
-    readDatabase('./database.csv').then((data) => {
+    readDatabase(process.argv[2]).then((data) => {
       res.statusCode = 200;
       res.write(`List: ${data[req.params.major].join(', ')}`);
       res.end();

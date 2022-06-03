@@ -14,17 +14,15 @@ class StudentsController {
   }
 
   static getAllStudentsByMajor(req, res) {
-    if (!(['CS', 'SWE'].includes(req.params.major))) {
-      res.statusCode = 500;
-      res.end('Major parameter must be CS or SWE');
-      return;
-    }
-
     readDatabase(process.argv[2]).then((data) => {
+      if (!(['CS', 'SWE'].includes(req.params.major))) {
+        res.status(500).end('Major parameter must be CS or SWE');
+        return;
+      }
       res.statusCode = 200;
       res.write(`List: ${data[req.params.major].join(', ')}`);
       res.end();
-    }).catch((err) => res.send(err.message));
+    }).catch((err) => { res.statusCode = 500; res.end(err.message); });
   }
 }
 

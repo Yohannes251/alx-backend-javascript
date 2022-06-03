@@ -2,7 +2,7 @@ const fs = require('fs');
 
 async function readDatabase(path) {
   if (!fs.existsSync(path)) {
-    throw new Error('Can not load the database');
+    throw new Error('Cannot load the database');
   }
 
   const content = await fs.promises.readFile(path, 'utf8');
